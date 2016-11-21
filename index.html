@@ -46,7 +46,7 @@
     <script>
 
         var leafletMap = L.map('map', {scrollWheelZoom : false}).setView([40, -74], 3);
-        L.tileLayer("https://a.tile.openstreetmap.org/{z}/{x}/{y}.png")
+        L.tileLayer("http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}")
             .addTo(leafletMap);
      
         var dropArea = document.getElementById('drop');
@@ -88,8 +88,10 @@
 
                     var markers = L.markerClusterGroup({ disableClusteringAtZoom: 17 });
                     for(var i = 0; i < data.features.length; i++){
-                        var marker = L.marker({lon : data.features[i].geometry.coordinates[0], lat : data.features[i].geometry.coordinates[1]});
-                        marker.bindPopup('popup');
+                        var marker = L.marker({
+                            lon : data.features[i].geometry.coordinates[0], 
+                            lat : data.features[i].geometry.coordinates[1]
+                        });
                         marker.bindPopup(Object.keys(data.features[i].properties).map(k => 
                             k + ': ' + data.features[i].properties[k]
                         ).join('<br/>'))
