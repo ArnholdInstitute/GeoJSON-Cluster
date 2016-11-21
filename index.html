@@ -45,7 +45,7 @@
 
     <script>
 
-        var leafletMap = L.map('map').setView([40, -74], 3);
+        var leafletMap = L.map('map', {scrollWheelZoom : false}).setView([40, -74], 3);
         L.tileLayer("https://a.tile.openstreetmap.org/{z}/{x}/{y}.png")
             .addTo(leafletMap);
      
